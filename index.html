@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pudgy on Fullscreen</title>
+    <style>
+        /* CSS стили */
+        body {
+            margin: 0; /* Убираем отступы у body */
+            overflow: hidden; /* Скрываем полосы прокрутки, если они появятся */
+        }
+
+        #fullscreen-image {
+            position: fixed; /* Фиксированное позиционирование, чтобы изображение занимало весь экран */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Масштабируем изображение, чтобы оно полностью заполняло контейнер, обрезая его при необходимости */
+            z-index: -1; /* Помещаем изображение на задний план */
+        }
+    </style>
+</head>
+<body>
+    <img id="fullscreen-image" src="pudgy.png" alt="Pudgy">
+    <script>
+        // JavaScript код (необязательный)
+        // В этом примере JavaScript не нужен, но его можно использовать для
+        // динамического изменения изображения или добавления других функций.
+    </script>
+</body>
+</html>
