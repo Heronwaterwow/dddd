@@ -63,6 +63,16 @@
 
         // Создаем много снежинок
         setInterval(createSnowflake, 100); // Создаем снежинку каждые 100 миллисекунд
+
+        if (window.TelegramWebviewProxy && window.TelegramWebviewProxy.postEvent) {
+  const data = JSON.stringify({}); // Пустой объект, если полноэкранному режиму не нужны параметры
+  window.TelegramWebviewProxy.postEvent('web_app_request_fullscreen', data);
+} else {
+  // Код для веб-версии (если применимо - уточнить по документации Telegram)
+  // Например: TelegramWebviewProxy.requestFullscreen();
+  console.warn("TelegramWebviewProxy not found. Running in a web environment?");
+}
+
     </script>
 
     <style>
