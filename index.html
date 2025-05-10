@@ -3,31 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pudgy on Fullscreen</title>
+    <title>Pudgy with Snowfall</title>
     <style>
-        /* CSS стили */
         body {
-            margin: 0; /* Убираем отступы у body */
-            overflow: hidden; /* Скрываем полосы прокрутки, если они появятся */
+            margin: 0;
+            overflow: hidden; /* Скрываем полосы прокрутки */
+            background-color: #000; /* Черный фон, чтобы снежинки были лучше видны */
         }
 
         #fullscreen-image {
-            position: fixed; /* Фиксированное позиционирование, чтобы изображение занимало весь экран */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Масштабируем изображение, чтобы оно полностью заполняло контейнер, обрезая его при необходимости */
-            z-index: -1; /* Помещаем изображение на задний план */
+            object-fit: cover;
+            z-index: 1; /*  Снежинки будут над изображением */
+        }
+
+        .snowflake {
+            position: absolute;
+            width: 10px; /* Размер снежинки */
+            height: 10px;
+            background: white; /* Цвет снежинки */
+            border-radius: 50%; /* Делаем снежинку круглой */
+            opacity: 0.7; /* Полупрозрачность */
+            pointer-events: none; /* Снежинки не реагируют на клики */
+            z-index: 2; /* Снежинки над картинкой */
         }
     </style>
 </head>
 <body>
     <img id="fullscreen-image" src="pudgy.png" alt="Pudgy">
+
     <script>
-        // JavaScript код (необязательный)
-        // В этом примере JavaScript не нужен, но его можно использовать для
-        // динамического изменения изображения или добавления других функций.
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            document.body.appendChild(snowflake);
+
+            // Случайная начальная позиция
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.top = -10 + 'px'; // Начинаем сверху
+
+            // Случайный размер
+            const size = Math.random() * 5 + 5; // От 5px до 10px
+            snowflake.style.width = size + 'px';
+            snowflake.style.height = size + 'px';
+
+            // Случайная скорость падения
+            const animationDuration = Math.random() * 5 + 5; // От 5 до 10 секунд
+            snowflake.style.animation = `fall ${animationDuration}s linear infinite`;
+
+            // Удаляем снежинку, когда она выходит за пределы экрана (для предотвращения утечек памяти)
+            setTimeout(() => {
+                snowflake.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Создаем много снежинок
+        setInterval(createSnowflake, 100); // Создаем снежинку каждые 100 миллисекунд
     </script>
+
+    <style>
+        /* Анимация падения */
+        @keyframes fall {
+            to {
+                transform: translate(0, 100vh);
+            }
+        }
+    </style>
+
 </body>
 </html>
+
