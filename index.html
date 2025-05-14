@@ -31,13 +31,18 @@
             pointer-events: none;
             z-index: 2;
         }
+
+        @keyframes fall {
+            to {
+                transform: translate(0, 100vh);
+            }
+        }
     </style>
 </head>
 <body>
     <img id="fullscreen-image" src="https://i.ibb.co/fz1q6F8d/PP-1-1.png" alt="Pudgy">
-  
 
-    <script>
+    <script defer>
         function createSnowflake() {
             const snowflake = document.createElement('div');
             snowflake.classList.add('snowflake');
@@ -51,7 +56,7 @@
             snowflake.style.height = size + 'px';
 
             const animationDuration = Math.random() * 5 + 5;
-            snowflake.style.animation = `fall ${animationDuration}s linear infinite`;
+            snowflake.style.animation = `fall ${animationDuration}s linear infinite`; // Исправлено
 
             setTimeout(() => {
                 snowflake.remove();
@@ -59,19 +64,7 @@
         }
 
         setInterval(createSnowflake, 100);
-
-     
-
     </script>
-
-    <style>
-        @keyframes fall {
-            to {
-                transform: translate(0, 100vh);
-            }
-        }
-    </style>
-
 </body>
 </html>
 
